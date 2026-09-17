@@ -10,6 +10,14 @@ The application runs directly in the **VS Code terminal**.
 
 ---
 
+# 🧠 QuizForge AI – MCQ Generator
+
+An AI-powered Multiple Choice Question Generator using Python, Streamlit, Hugging Face, and LLM.
+
+## 🚀 Live Demo
+
+👉 https://mcq-generator-yeezwrpso3m8fhpwzx4pzm.streamlit.app/
+
 ## 🎯 Objective
 
 The main objective of this project is to generate educational MCQs quickly using a Large Language Model (LLM).
