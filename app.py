@@ -8,9 +8,9 @@ import re
 # =========================================================
 
 st.set_page_config(
-    page_title="QuizCraft AI",
+    page_title="QuizForge AI",
     page_icon="🧠",
-    layout="wide"
+    layout="centered"
 )
 
 # =========================================================
@@ -26,15 +26,15 @@ st.markdown("""
 }
 
 .block-container {
-    max-width: 1100px;
+    max-width: 950px;
     padding-top: 2rem;
 }
 
-/* Main Header */
+/* ================= HEADER ================= */
 
 .hero {
     text-align: center;
-    padding: 35px 20px 25px 20px;
+    padding: 25px 10px 25px 10px;
 }
 
 .hero-icon {
@@ -42,30 +42,82 @@ st.markdown("""
 }
 
 .hero-title {
-    font-size: 48px;
+    font-size: 46px;
     font-weight: 800;
+    color: white !important;
     margin: 5px 0;
 }
 
 .hero-subtitle {
     font-size: 18px;
-    color: #cbd5e1;
+    color: #cbd5e1 !important;
 }
 
-/* Cards */
+/* ================= SECTION HEADINGS ================= */
 
-.card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
+h2, h3 {
+    color: white !important;
+}
+
+/* ================= INPUT LABELS ================= */
+
+label {
+    color: white !important;
+}
+
+/* ================= TEXT AREA ================= */
+
+.stTextArea textarea {
+    background-color: #f8fafc !important;
+    color: #111827 !important;
+    border-radius: 12px !important;
+}
+
+/* ================= NUMBER INPUT ================= */
+
+.stNumberInput input {
+    background-color: #f8fafc !important;
+    color: #111827 !important;
+}
+
+/* ================= SELECT BOX ================= */
+
+.stSelectbox div[data-baseweb="select"] {
+    border-radius: 12px !important;
+}
+
+/* ================= GENERATE BUTTON ================= */
+
+.stButton > button {
+    width: 100%;
+    border-radius: 12px;
+    height: 50px;
+    font-size: 17px;
+    font-weight: 700;
+    background-color: #6366f1 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.stButton > button:hover {
+    background-color: #4f46e5 !important;
+    color: white !important;
+}
+
+/* ================= QUESTION CARD ================= */
+
+.question-card {
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 18px;
-    padding: 25px;
-    margin: 18px 0;
-    backdrop-filter: blur(12px);
+    padding: 22px;
+    margin: 20px 0 10px 0;
+    backdrop-filter: blur(10px);
 }
 
 .question-number {
     font-size: 14px;
-    color: #a5b4fc;
+    color: #a5b4fc !important;
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -73,29 +125,60 @@ st.markdown("""
 .question-text {
     font-size: 20px;
     font-weight: 650;
+    color: white !important;
     margin-top: 8px;
 }
 
-/* Buttons */
+/* ================= OPTIONS ================= */
 
-.stButton > button {
-    width: 100%;
-    border-radius: 12px;
-    height: 48px;
-    font-size: 16px;
-    font-weight: 700;
+.option-text {
+    background: rgba(255, 255, 255, 0.10);
+    border-radius: 10px;
+    padding: 11px 15px;
+    margin: 7px 0;
+    color: white !important;
 }
 
-/* Download */
+.option-text b {
+    color: #c7d2fe !important;
+}
+
+/* ================= REVEAL ANSWER ================= */
+
+[data-testid="stExpander"] {
+    background-color: white !important;
+    border-radius: 12px !important;
+    border: 1px solid #e2e8f0 !important;
+    margin-top: 12px !important;
+}
+
+[data-testid="stExpander"] summary {
+    color: #1e293b !important;
+}
+
+[data-testid="stExpander"] summary span {
+    color: #1e293b !important;
+    font-weight: 700 !important;
+}
+
+[data-testid="stExpander"] p {
+    color: #1e293b !important;
+}
+
+[data-testid="stExpander"] div {
+    color: #1e293b;
+}
+
+/* ================= DOWNLOAD BUTTON ================= */
 
 .stDownloadButton > button {
     width: 100%;
     border-radius: 12px;
-    height: 48px;
+    height: 50px;
     font-weight: 700;
 }
 
-/* Footer */
+/* ================= FOOTER ================= */
 
 .footer {
     text-align: center;
@@ -117,11 +200,11 @@ st.markdown("""
 <div class="hero-icon">🧠</div>
 
 <div class="hero-title">
-QuizCraft AI
+QuizForge AI
 </div>
 
 <div class="hero-subtitle">
-Create smart, customized multiple-choice quizzes with Artificial Intelligence
+Create smart quizzes instantly with Artificial Intelligence
 </div>
 
 </div>
@@ -130,57 +213,53 @@ Create smart, customized multiple-choice quizzes with Artificial Intelligence
 st.divider()
 
 # =========================================================
-# SIDEBAR
+# QUIZ SETTINGS
 # =========================================================
 
-with st.sidebar:
+st.markdown("## 📝 Create Your Quiz")
 
-    st.header("⚙️ Quiz Settings")
+topic = st.text_area(
+    "Enter your topic",
+    placeholder="Example: Python Programming, DBMS, Artificial Intelligence...",
+    height=100
+)
 
-    num_questions = st.slider(
+col1, col2 = st.columns(2)
+
+with col1:
+
+    num_questions = st.number_input(
         "🔢 Number of Questions",
         min_value=1,
         max_value=20,
-        value=5
+        value=5,
+        step=1
     )
+
+with col2:
 
     difficulty = st.selectbox(
         "🎚️ Difficulty Level",
         ["Easy", "Medium", "Hard"]
     )
 
-    st.divider()
-
-    st.markdown("### ✨ QuizCraft AI")
-
-    st.write(
-        "Generate personalized MCQs using an LLM."
-    )
-
-# =========================================================
-# TOPIC INPUT
-# =========================================================
-
-st.markdown("## 📝 Create Your Quiz")
-
-topic = st.text_input(
-    "Enter your topic",
-    placeholder="Example: Python Programming, DBMS, Artificial Intelligence..."
-)
-
 generate = st.button(
-    "🚀 Generate My Quiz"
+    "🚀 Generate My Quiz",
+    use_container_width=True
 )
 
 # =========================================================
 # SESSION STATE
 # =========================================================
 
-if "quiz" not in st.session_state:
-    st.session_state.quiz = None
+if "quiz_text" not in st.session_state:
+    st.session_state.quiz_text = None
 
-if "raw_result" not in st.session_state:
-    st.session_state.raw_result = ""
+if "topic" not in st.session_state:
+    st.session_state.topic = ""
+
+if "difficulty" not in st.session_state:
+    st.session_state.difficulty = ""
 
 # =========================================================
 # GENERATE QUIZ
@@ -190,7 +269,7 @@ if generate:
 
     if not topic.strip():
 
-        st.warning("⚠️ Please enter a topic first.")
+        st.warning("⚠️ Please enter your topic first.")
 
     else:
 
@@ -201,7 +280,8 @@ if generate:
             st.error("❌ HF_TOKEN is missing.")
 
             st.info(
-                "Set your Hugging Face token in the terminal before running the app."
+                "Set your Hugging Face token in the terminal "
+                "before running the app."
             )
 
             st.stop()
@@ -214,8 +294,8 @@ if generate:
         prompt = f"""
 You are an expert educational MCQ generator.
 
-Create exactly {num_questions} multiple-choice questions
-about:
+Generate exactly {num_questions} multiple-choice questions
+about the topic:
 
 {topic}
 
@@ -225,12 +305,12 @@ Requirements:
 
 1. Generate exactly {num_questions} questions.
 2. Each question must have exactly four options.
-3. Label options A, B, C, D.
-4. Only one answer must be correct.
+3. Label the options A, B, C, and D.
+4. Only one option should be correct.
 5. Questions must match the selected difficulty.
 6. Avoid duplicate questions.
 7. Provide the correct answer.
-8. Keep questions clear and educational.
+8. Keep questions clear and suitable for students.
 
 Use EXACTLY this format:
 
@@ -252,169 +332,191 @@ D) Option D
 
 Correct Answer: B) Option B
 
-Continue until all {num_questions} questions are generated.
+Continue until exactly {num_questions} questions are generated.
 """
 
-        with st.spinner("🤖 QuizCraft AI is creating your quiz..."):
+        with st.spinner(
+            "🤖 QuizForge AI is creating your quiz..."
+        ):
 
             try:
 
                 response = client.chat.completions.create(
-
                     model="openai/gpt-oss-120b",
-
                     messages=[
                         {
                             "role": "user",
                             "content": prompt
                         }
                     ],
-
                     max_tokens=4000
                 )
 
                 result = response.choices[0].message.content
 
-                st.session_state.raw_result = result
-
-                # -------------------------------------------------
-                # Parse Questions
-                # -------------------------------------------------
-
-                pattern = r"Question\s+\d+:(.*?)(?=Question\s+\d+:|$)"
-
-                matches = re.findall(
-                    pattern,
-                    result,
-                    re.DOTALL | re.IGNORECASE
-                )
-
-                quiz_data = []
-
-                for match in matches:
-
-                    question_match = re.search(
-                        r"^(.*?)\n\s*A\)",
-                        match.strip(),
-                        re.DOTALL
-                    )
-
-                    options = re.findall(
-                        r"([A-D])\)\s*(.*)",
-                        match
-                    )
-
-                    answer_match = re.search(
-                        r"Correct Answer:\s*([A-D])\)\s*(.*)",
-                        match,
-                        re.IGNORECASE
-                    )
-
-                    if question_match and len(options) >= 4:
-
-                        question = question_match.group(1).strip()
-
-                        answer = None
-
-                        if answer_match:
-                            answer = answer_match.group(1).upper()
-
-                        quiz_data.append(
-                            {
-                                "question": question,
-                                "options": options[:4],
-                                "answer": answer
-                            }
-                        )
-
-                st.session_state.quiz = quiz_data
+                st.session_state.quiz_text = result
+                st.session_state.topic = topic
+                st.session_state.difficulty = difficulty
 
                 st.success(
-                    f"🎉 Successfully generated {len(quiz_data)} questions!"
+                    "🎉 MCQs generated successfully!"
                 )
 
             except Exception as e:
 
-                st.error("❌ Error while generating the quiz.")
+                st.error(
+                    "❌ Error while generating MCQs."
+                )
 
                 st.code(str(e))
 
 # =========================================================
-# DISPLAY QUIZ
+# DISPLAY GENERATED MCQs
 # =========================================================
 
-if st.session_state.quiz:
+if st.session_state.quiz_text:
 
     st.divider()
 
     st.markdown("## 📚 Your AI Generated Quiz")
 
     st.caption(
-        f"Topic: {topic}  •  Difficulty: {difficulty}  •  "
-        f"Questions: {len(st.session_state.quiz)}"
+        f"Topic: {st.session_state.topic}  •  "
+        f"Difficulty: {st.session_state.difficulty}"
     )
 
-    # ---------------------------------------------------------
-    # Individual MCQ Cards
-    # ---------------------------------------------------------
+    result = st.session_state.quiz_text
 
-    for index, q in enumerate(
-        st.session_state.quiz,
-        start=1
-    ):
+    # Split questions
+    questions = re.split(
+        r'(?=Question\s*\d+\s*:)',
+        result,
+        flags=re.IGNORECASE
+    )
 
-        st.markdown(
-            f"""
-            <div class="card">
+    question_count = 0
 
-            <div class="question-number">
-            QUESTION {index}
-            </div>
+    for block in questions:
 
-            <div class="question-text">
-            {q["question"]}
-            </div>
+        block = block.strip()
 
-            </div>
-            """,
-            unsafe_allow_html=True
+        if not block:
+            continue
+
+        # Question text
+        question_match = re.search(
+            r'Question\s*\d+\s*:\s*(.*?)(?=\n\s*A\))',
+            block,
+            re.IGNORECASE | re.DOTALL
         )
 
         # Options
+        option_matches = re.findall(
+            r'^\s*([A-D])\)\s*(.+)$',
+            block,
+            re.IGNORECASE | re.MULTILINE
+        )
 
-        for letter, option in q["options"]:
+        # Correct answer
+        answer_match = re.search(
+            r'Correct Answer\s*:\s*([A-D])\)\s*(.+)',
+            block,
+            re.IGNORECASE
+        )
 
-            st.write(
-                f"**{letter})** {option}"
+        # =================================================
+        # DISPLAY VALID QUESTION
+        # =================================================
+
+        if question_match and len(option_matches) >= 4:
+
+            question_count += 1
+
+            question_text = question_match.group(1).strip()
+
+            st.markdown(
+                f"""
+                <div class="question-card">
+
+                <div class="question-number">
+                QUESTION {question_count}
+                </div>
+
+                <div class="question-text">
+                {question_text}
+                </div>
+
+                </div>
+                """,
+                unsafe_allow_html=True
             )
 
-        # -----------------------------------------------------
-        # Hide / Reveal Answer
-        # -----------------------------------------------------
+            # =================================================
+            # OPTIONS
+            # =================================================
 
-        with st.expander("👁️ Reveal Correct Answer"):
+            for letter, option in option_matches[:4]:
 
-            if q["answer"]:
-
-                answer_text = ""
-
-                for letter, option in q["options"]:
-
-                    if letter.upper() == q["answer"]:
-
-                        answer_text = option
-
-                st.success(
-                    f"✅ Correct Answer: {q['answer']}) {answer_text}"
+                st.markdown(
+                    f"""
+                    <div class="option-text">
+                    <b>{letter.upper()})</b> {option}
+                    </div>
+                    """,
+                    unsafe_allow_html=True
                 )
 
-            else:
+            # =================================================
+            # REVEAL ANSWER
+            # =================================================
 
-                st.info(
-                    "Correct answer was not detected."
+            if answer_match:
+
+                answer_letter = (
+                    answer_match.group(1).upper()
                 )
 
-        st.write("")
+                answer_text = (
+                    answer_match.group(2).strip()
+                )
+
+                with st.expander(
+                    "👁️ Reveal Correct Answer"
+                ):
+
+                    st.markdown(
+                        f"""
+                        <div style="
+                            background-color: #dcfce7;
+                            color: #166534;
+                            padding: 14px;
+                            border-radius: 10px;
+                            font-weight: 700;
+                            margin-top: 5px;
+                        ">
+                        ✅ Correct Answer:
+                        {answer_letter}) {answer_text}
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+
+            st.write("")
+
+    # =========================================================
+    # FALLBACK
+    # =========================================================
+
+    if question_count == 0:
+
+        st.warning(
+            "The questions could not be formatted automatically. "
+            "Showing the original AI response."
+        )
+
+        st.markdown("### 🤖 AI Response")
+
+        st.markdown(result)
 
     # =========================================================
     # DOWNLOAD
@@ -424,61 +526,27 @@ if st.session_state.quiz:
 
     st.markdown("## 📥 Save Your Quiz")
 
-    download_text = (
-        "QUIZCRAFT AI - GENERATED MCQs\n"
-        + "=" * 50
-        + "\n\n"
-        + f"Topic: {topic}\n"
-        + f"Difficulty: {difficulty}\n"
-        + f"Number of Questions: {len(st.session_state.quiz)}\n\n"
-    )
-
-    for index, q in enumerate(
-        st.session_state.quiz,
-        start=1
-    ):
-
-        download_text += (
-            f"Question {index}: {q['question']}\n\n"
-        )
-
-        for letter, option in q["options"]:
-
-            download_text += (
-                f"{letter}) {option}\n"
-            )
-
-        download_text += "\n"
-
-        if q["answer"]:
-
-            for letter, option in q["options"]:
-
-                if letter.upper() == q["answer"]:
-
-                    download_text += (
-                        f"Correct Answer: "
-                        f"{q['answer']}) {option}\n"
-                    )
-
-        download_text += "\n" + "-" * 50 + "\n\n"
-
     st.download_button(
         label="📥 Download MCQs",
-        data=download_text,
-        file_name="QuizCraft_AI_MCQs.txt",
-        mime="text/plain"
+        data=result,
+        file_name="QuizForge_AI_MCQs.txt",
+        mime="text/plain",
+        use_container_width=True
     )
 
 # =========================================================
 # FOOTER
 # =========================================================
 
+st.divider()
+
 st.markdown("""
 <div class="footer">
 
-🧠 QuizCraft AI  
+🧠 QuizForge AI
+
 <br>
+
 Powered by Python • Streamlit • Hugging Face • Large Language Model
 
 </div>
