@@ -1,6 +1,6 @@
 # MCQ Generator
 
-## 📌 Project Overview
+##  Project Overview
 
 **MCQ Generator** is a Python-based LLM application that automatically generates multiple-choice questions (MCQs) on any given topic.
 
@@ -10,17 +10,17 @@ The application runs directly in the **VS Code terminal**.
 
 ---
 
-# 🧠 QuizForge AI – MCQ Generator
+#  QuizForge AI – MCQ Generator
 
 An AI-powered Multiple Choice Question Generator using Python, Streamlit, Hugging Face, and LLM.
 
-## 🚀 Live Demo
+##  Live Demo
 
-👉 https://mcq-generator-yeezwrpso3m8fhpwzx4pzm.streamlit.app/
+ https://mcq-generator-yeezwrpso3m8fhpwzx4pzm.streamlit.app/
 
 ---
 
-## 🎯 Objective
+##  Objective
 
 The main objective of this project is to generate educational MCQs quickly using a Large Language Model (LLM).
 
@@ -37,7 +37,7 @@ The application then generates MCQs with:
 
 ---
 
-## ✨ Features
+##  Features
 
 * Generate MCQs on any topic
 * User-defined number of questions
@@ -50,7 +50,7 @@ The application then generates MCQs with:
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 * **Python**
 * **Hugging Face Inference API**
@@ -61,7 +61,7 @@ The application then generates MCQs with:
 
 ---
 
-## 🔄 Workflow
+##  Workflow
 
 ```text
 User
@@ -83,7 +83,7 @@ Display Questions & Answers
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 MCQ Generator/
@@ -101,7 +101,7 @@ MCQ Generator/
 
 ---
 
-## ⚙️ Installation
+##  Installation
 
 ### Step 1: Clone or Download the Project
 
@@ -123,7 +123,7 @@ huggingface_hub
 
 ---
 
-## 🔑 Hugging Face API Token
+##  Hugging Face API Token
 
 This project requires a **Hugging Face Access Token** to access the inference service.
 
@@ -145,7 +145,7 @@ echo $env:HF_TOKEN
 
 ---
 
-## ▶️ How to Run
+##  How to Run
 
 Open the terminal inside the project folder and run:
 
@@ -175,7 +175,7 @@ The application will generate the requested MCQs.
 
 ---
 
-## 📝 Sample Input
+##  Sample Input
 
 ```text
 Enter the topic: Python Programming
@@ -184,7 +184,7 @@ Enter number of questions: 5
 
 ---
 
-## 📄 Sample Output
+##  Sample Output
 
 ```text
 ============================================================
@@ -216,7 +216,7 @@ Correct Answer: A) List
 
 ---
 
-## 🧠 LLM Prompt
+##  LLM Prompt
 
 The application sends instructions to the LLM to generate:
 
@@ -229,7 +229,7 @@ The application sends instructions to the LLM to generate:
 
 ---
 
-## 📥 Input
+##  Input
 
 The application accepts:
 
@@ -247,7 +247,7 @@ Number of Questions: 5
 
 ---
 
-## 📤 Output
+##  Output
 
 The application produces:
 
@@ -264,7 +264,7 @@ for each generated MCQ.
 
 ---
 
-## 🚀 Applications
+##  Applications
 
 This MCQ Generator can be useful for:
 
@@ -278,7 +278,7 @@ This MCQ Generator can be useful for:
 
 ---
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 
 The project can be extended with:
 
@@ -294,7 +294,7 @@ The project can be extended with:
 
 ---
 
-## 📌 Conclusion
+##  Conclusion
 
 The **MCQ Generator** demonstrates how a Large Language Model can be integrated with a Python application to automatically generate educational multiple-choice questions.
 
